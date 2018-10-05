@@ -1,0 +1,7 @@
+{
+  "name": "FireBase",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
