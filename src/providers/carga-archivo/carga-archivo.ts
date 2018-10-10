@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from "angularfire2/database";
 import * as firebase from 'firebase';
 import 'rxjs/add/operator/map';
+
 
 
 /*
@@ -27,6 +27,7 @@ export class CargaArchivoProvider {
   
     }
   
+  
     private cargar_ultimo_key(){
       
           return this.afDB.list('/post', ref=> ref.orderByKey().limitToLast(1) )
@@ -41,6 +42,7 @@ export class CargaArchivoProvider {
                     });
       
         }
+      
       
         cargar_imagenes(){
           return new Promise( (resolve, reject)=>{
@@ -65,6 +67,7 @@ export class CargaArchivoProvider {
               });
          });
         }
+      
       
         cargar_imagen_firebase( archivo: ArchivoSubir){
           let promesa = new Promise( (resolve, reject)=>{
@@ -91,6 +94,7 @@ export class CargaArchivoProvider {
          });
           return promesa;
         }
+      
             
         private crear_post( titulo: string, url: string, nombreArchivo:string ){
           
@@ -106,6 +110,7 @@ export class CargaArchivoProvider {
               this.imagenes.push( post );
           
             }
+          
          
             mostrar_toast( mensaje: string ){
               
@@ -116,10 +121,11 @@ export class CargaArchivoProvider {
               
                 }
               
+              
               }
               
 
-  }
+  
 
   interface ArchivoSubir{
     titulo: string;

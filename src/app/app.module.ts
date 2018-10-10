@@ -59,9 +59,10 @@ export const firebaseConfig = {
     AngularFireDatabase,
     Camera,
     ImagePicker,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CargaArchivoProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
+
+
 
 
 

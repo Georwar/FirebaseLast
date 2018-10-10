@@ -6,6 +6,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 
+import { CargaArchivoProvider } from "../../providers/carga-archivo/carga-archivo";
+
+
+
 @Component({
   selector: 'page-subir',
   templateUrl: 'subir.html',
@@ -18,14 +22,16 @@ export class SubirPage {
 
   constructor(private viewCtrl: ViewController,
     private camera: Camera,
- private imagePicker: ImagePicker) {
+    private imagePicker: ImagePicker,
+    public _cap: CargaArchivoProvider ) {
 }
+
+
 
 
    cerrar_modal(){
     this.viewCtrl.dismiss();
   }
-
   mostrar_camara(){
     const options: CameraOptions = {
         quality: 50,
@@ -40,9 +46,6 @@ export class SubirPage {
      // Handle error
      console.log( "ERROR EN CAMARA", JSON.stringify(err) );
     });
-
-
-
   }
 
 
@@ -67,11 +70,17 @@ seleccionar_foto(){
       
           });
       
-
+      
   }
-crear_post(){
-  console.log("crear post");
-}
+  crear_post(){
+    let archivo = {
+      img: this.imagen64,
+      titulo: this.titulo
+  }
+    this._cap.cargar_imagen_firebase(archivo)
+      .then(()=>this.cerrar_modal() )
+ }
+
 
 }
 
